@@ -1,0 +1,24 @@
+<h1>Films à l'affiche</h1>
+
+@if (films().length === 0) {
+  <p>Aucun film disponible.</p>
+} @else {
+  @for (film of films(); track film.idFilm) {
+    <article>
+      <img
+        [src]="film.urlAffiche"
+        [alt]="film.titre"
+      >
+
+      <h2>{{ film.titre }}</h2>
+
+      <p>
+        {{ film.genre }} - {{ film.dureeMinute }} min
+      </p>
+
+      <p>
+        Réalisé par {{ film.realisateur }}
+      </p>
+    </article>
+  }
+}
