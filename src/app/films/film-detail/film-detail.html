@@ -1,0 +1,60 @@
+@if (film(); as filmCourant) {
+
+  <article>
+
+    <img
+      [src]="filmCourant.urlAffiche"
+      [alt]="filmCourant.titre"
+    >
+
+    <h1>{{ filmCourant.titre }}</h1>
+
+    <p>
+      {{ filmCourant.genre }}
+      - {{ filmCourant.dureeMinute }} min
+      - {{ filmCourant.anneeSortie }}
+    </p>
+
+    <p>
+      Réalisé par {{ filmCourant.realisateur }}
+    </p>
+
+    <p>
+      {{ filmCourant.synopsis }}
+    </p>
+
+    <section>
+
+        <h2>Séances Disponibles</h2>
+
+        @if (seances().length ===0) {
+
+            <p>Aucune séance disponible pour ce film.</p>
+        } @else {
+
+            @for (seance of seances(); track seance.idSeance) {
+
+                <article>
+
+                    <h3>{{seance.dateHeure}}</h3>
+
+                    <p>Version : {{seance.version}}</p>
+
+                    <p>Salle : {{seance.idSalle}}</p>
+
+                    <p>Prix : {{seance.prix}} €</p>
+
+                </article>
+            } 
+        }  
+
+
+    </section>
+
+  </article>
+
+} @else {
+
+  <p>Chargement du film...</p>
+
+}
