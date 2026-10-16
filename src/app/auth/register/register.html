@@ -1,0 +1,85 @@
+<section>
+
+  <h1>Créer un compte</h1>
+
+  <form
+    [formGroup]="registerForm"
+    (ngSubmit)="inscrire()"
+  >
+
+    <div>
+      <label for="prenom">Prénom</label>
+
+      <input
+        id="prenom"
+        type="text"
+        formControlName="prenom"
+      >
+    </div>
+
+    <div>
+      <label for="nom">Nom</label>
+
+      <input
+        id="nom"
+        type="text"
+        formControlName="nom"
+      >
+    </div>
+
+    <div>
+      <label for="email">Email</label>
+
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+      >
+    </div>
+
+    <div>
+      <label for="motDePasse">
+        Mot de passe
+      </label>
+
+      <input
+        id="motDePasse"
+        type="password"
+        formControlName="motDePasse"
+      >
+    </div>
+
+    <div>
+      <label for="telephone">
+        Téléphone
+      </label>
+
+      <input
+        id="telephone"
+        type="tel"
+        formControlName="telephone"
+      >
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="registerForm.invalid"
+    >
+      Créer mon compte
+    </button>
+
+  </form>
+
+  @if (messageSucces()) {
+    <p>
+      {{ messageSucces() }}
+    </p>
+  }
+
+  @if (messageErreur()) {
+    <p>
+      {{ messageErreur() }}
+    </p>
+  }
+
+</section>
