@@ -1,0 +1,49 @@
+<section>
+
+  <h1>Connexion</h1>
+
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="connecter()"
+  >
+
+    <div>
+      <label for="email">
+        Email
+      </label>
+
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+      >
+    </div>
+
+    <div>
+      <label for="motDePasse">
+        Mot de passe
+      </label>
+
+      <input
+        id="motDePasse"
+        type="password"
+        formControlName="motDePasse"
+      >
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="loginForm.invalid"
+    >
+      Se connecter
+    </button>
+
+  </form>
+
+  @if (messageErreur()) {
+    <p>
+      {{ messageErreur() }}
+    </p>
+  }
+
+</section>
