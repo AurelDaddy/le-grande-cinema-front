@@ -4,6 +4,7 @@ import { FilmDetail } from './films/film-detail/film-detail';
 import { Register } from './auth/register/register';
 import { Login } from './auth/login/login';
 import { authGuard } from './core/auth-guard';
+import { Reservation } from './reservation/reservation/reservation';
 
 export const routes: Routes = [
   { 
@@ -22,6 +23,11 @@ export const routes: Routes = [
   path: 'login',
   component: Login
  },
+ {
+  path: 'reservation/:idSeance',
+  component: Reservation,
+  canActivate: [authGuard]
+  },
  {
    path: '**',
    redirectTo: ''
