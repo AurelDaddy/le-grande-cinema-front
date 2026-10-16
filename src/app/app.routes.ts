@@ -3,6 +3,7 @@ import { FilmList } from './films/film-list/film-list';
 import { FilmDetail } from './films/film-detail/film-detail';
 import { Register } from './auth/register/register';
 import { Login } from './auth/login/login';
+import { authGuard } from './core/auth-guard';
 
 export const routes: Routes = [
   { 
