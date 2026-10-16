@@ -19,6 +19,11 @@
       <p>
         Réalisé par {{ film.realisateur }}
       </p>
+
+      <a [routerLink]="['/films', film.idFilm]">
+        Voir le film
+      </a>
+      
     </article>
   }
 }
