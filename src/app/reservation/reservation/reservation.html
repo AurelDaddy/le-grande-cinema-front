@@ -50,6 +50,15 @@
     Statut :
     {{ reservation.statut }}
   </p>
+
+  <a
+  [routerLink]="[
+    '/paiement',
+    reservation.idReservation
+  ]"
+>
+  Procéder au paiement
+</a>
 }
 
 @if (erreur()) {

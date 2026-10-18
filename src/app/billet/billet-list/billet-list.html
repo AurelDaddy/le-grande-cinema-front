@@ -1,0 +1,49 @@
+<h1>Mes billets</h1>
+
+@if (billets().length === 0) {
+
+  <p>
+    Vous n'avez aucun billet.
+  </p>
+
+} @else {
+
+  @for (billet of billets(); track billet.idReservation) {
+
+    <article>
+
+      <h2>
+        {{ billet.titreFilm }}
+      </h2>
+
+      <p>
+        {{ billet.dateHeure }}
+      </p>
+
+      <p>
+        Salle {{ billet.numeroSalle }}
+      </p>
+
+      <p>
+        Places :
+        {{ billet.places.join(', ') }}
+      </p>
+
+      <a
+        [routerLink]="[
+          '/billet',
+          billet.idReservation
+        ]"
+      >
+        Voir le billet
+      </a>
+
+    </article>
+  }
+}
+
+@if (erreur()) {
+  <p>
+    {{ erreur() }}
+  </p>
+}

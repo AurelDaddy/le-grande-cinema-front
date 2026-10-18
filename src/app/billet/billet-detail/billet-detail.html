@@ -1,0 +1,51 @@
+@if (billet(); as billet) {
+
+  <article>
+
+    <h1>
+      {{ billet.titreFilm }}
+    </h1>
+
+    <p>
+      {{ billet.dateHeure }}
+    </p>
+
+    <p>
+      Version :
+      {{ billet.version }}
+    </p>
+
+    <p>
+      Salle :
+      {{ billet.numeroSalle }}
+    </p>
+
+    <p>
+      Places :
+      {{ billet.places.join(', ') }}
+    </p>
+
+    <p>
+      Titulaire :
+      {{ billet.prenom }}
+      {{ billet.nom }}
+    </p>
+
+    <p>
+      Réservation :
+      #{{ billet.idReservation }}
+    </p>
+
+    <p>
+      Référence paiement :
+      {{ billet.referencePaiement }}
+    </p>
+
+  </article>
+}
+
+@if (erreur()) {
+  <p>
+    {{ erreur() }}
+  </p>
+}

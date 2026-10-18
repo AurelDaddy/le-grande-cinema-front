@@ -1,0 +1,51 @@
+<h1>Paiement</h1>
+
+<p>
+  Confirmer le paiement de la réservation.
+</p>
+
+<button
+  type="button"
+  (click)="payer()"
+>
+  Payer
+</button>
+
+@if (paiementEffectue(); as paiement) {
+
+  <p>
+    Paiement effectué.
+  </p>
+
+  <p>
+    Montant :
+    {{ paiement.montant }} €
+  </p>
+
+  <p>
+    Statut :
+    {{ paiement.statut }}
+  </p>
+
+  <p>
+    Référence :
+    {{ paiement.referencePaiement }}
+  </p>
+
+  @if (paiement.statut === 'ACCEPTE') {
+
+  <a
+    [routerLink]="['/billet',
+      paiement.idReservation
+    ]"
+  >
+    Voir mon billet
+  </a>
+}
+}
+
+@if (erreur()) {
+  <p>
+    {{ erreur() }}
+  </p>
+}

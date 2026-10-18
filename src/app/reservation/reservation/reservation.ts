@@ -1,5 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+
 
 import { SeanceService } from '../../films/seance.service';
 import { ReservationService } from '../reservation.service';
@@ -7,7 +8,7 @@ import { Reservation as ReservationModel } from '../reservation.model';
 
 @Component({
   selector: 'app-reservation',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './reservation.html',
   styleUrl: './reservation.scss'
 })
