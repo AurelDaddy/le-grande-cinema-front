@@ -1,1 +1,38 @@
-<header>HEADER</header>
+<header>
+  <nav>
+
+    <a routerLink="/">
+      Le Grande Cinema
+    </a>
+
+    <a routerLink="/">
+      Films
+    </a>
+
+    @if (authService.utilisateurConnecte(); as utilisateur) {
+
+      <span>
+        Bonjour {{ utilisateur.prenom }}
+      </span>
+
+      <button
+        type="button"
+        (click)="deconnecter()"
+      >
+        Déconnexion
+      </button>
+
+    } @else {
+
+      <a routerLink="/login">
+        Connexion
+      </a>
+
+      <a routerLink="/register">
+        Inscription
+      </a>
+
+    }
+
+  </nav>
+</header>

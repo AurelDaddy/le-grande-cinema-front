@@ -1,0 +1,69 @@
+<h1>Réservation</h1>
+
+<p>
+  Places disponibles :
+  {{ nombrePlacesDisponibles() }}
+</p>
+
+@if (nombrePlacesDisponibles() > 0) {
+
+  <label for="nombrePlaces">
+    Nombre de places
+  </label>
+
+  <input
+    id="nombrePlaces"
+    type="number"
+    min="1"
+    [max]="nombrePlacesDisponibles()"
+    [value]="nombrePlaces()"
+    (input)="changerNombrePlaces($event)"
+  >
+
+  <button
+    type="button"
+    (click)="reserver()"
+  >
+    Réserver
+  </button>
+
+} @else {
+
+  <p>
+    Aucune place disponible.
+  </p>
+
+}
+
+@if (reservationCreee(); as reservation) {
+
+  <p>
+    Réservation créée avec succès.
+  </p>
+
+  <p>
+    Numéro de réservation :
+    {{ reservation.idReservation }}
+  </p>
+
+  <p>
+    Statut :
+    {{ reservation.statut }}
+  </p>
+
+  <a
+  [routerLink]="[
+    '/paiement',
+    reservation.idReservation
+  ]"
+>
+  Procéder au paiement
+</a>
+}
+
+@if (erreur()) {
+
+  <p>
+    {{ erreur() }}
+  </p>
+}

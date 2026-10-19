@@ -1,9 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
-  imports: [],
   selector: 'app-header',
-  styleUrl: './header.scss',
+  imports: [
+    RouterLink
+  ],
   templateUrl: './header.html',
+  styleUrl: './header.scss'
 })
-export class Header {}
+export class Header {
+
+  protected readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+
+  deconnecter(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
+}

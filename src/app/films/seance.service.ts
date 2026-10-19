@@ -17,4 +17,14 @@ export class SeanceService {
       `${this.apiUrl}/films/${idFilm}/seances`
     );
   }
+
+  getNombrePlacesDisponibles(
+  idSeance: number
+): Observable<number> {
+
+  return this.http.get<number>(
+    `${this.apiUrl}/seances/${idSeance}/places-disponibles`
+  );
+}
+
 }

@@ -4,10 +4,11 @@ import { Film } from '../films';
 import { FilmService } from '../film.service';
 import { Seance } from '../seance';
 import { SeanceService } from '../seance.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-film-detail',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './film-detail.html',
   styleUrl: './film-detail.scss'
 })

@@ -45,6 +45,8 @@
                     <p>Prix : {{seance.prix}} €</p>
 
                 </article>
+                
+                <a [routerLink]="['/reservation', seance.idSeance]">Réserver</a>
             } 
         }  
 
