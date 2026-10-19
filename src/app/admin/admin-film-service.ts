@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Film } from '../films/films';
+import { CreateFilmRequest } from './create-film-request';
 
 @Injectable({
   providedIn: 'root'
@@ -17,4 +18,11 @@ export class AdminFilmService {
   getAllFilms(): Observable<Film[]> {
     return this.http.get<Film[]>(this.apiUrl);
   }
+
+  createFilm(request: CreateFilmRequest): Observable<Film> {
+  return this.http.post<Film>(
+    this.apiUrl,
+    request
+  );
+}
 }

@@ -1,1 +1,75 @@
-<p>admin-film-form works!</p>
+<h1>Ajouter un film</h1>
+
+@if (erreur()) {
+  <p>{{ erreur() }}</p>
+}
+
+<form
+  [formGroup]="filmForm"
+  (ngSubmit)="creerFilm()">
+
+  <div>
+    <label for="titre">Titre</label>
+    <input
+      id="titre"
+      type="text"
+      formControlName="titre">
+  </div>
+
+  <div>
+    <label for="dureeMinute">Durée en minutes</label>
+    <input
+      id="dureeMinute"
+      type="number"
+      min="1"
+      formControlName="dureeMinute">
+  </div>
+
+  <div>
+    <label for="anneeSortie">Année de sortie</label>
+    <input
+      id="anneeSortie"
+      type="number"
+      min="1888"
+      formControlName="anneeSortie">
+  </div>
+
+  <div>
+    <label for="genre">Genre</label>
+    <input
+      id="genre"
+      type="text"
+      formControlName="genre">
+  </div>
+
+  <div>
+    <label for="realisateur">Réalisateur</label>
+    <input
+      id="realisateur"
+      type="text"
+      formControlName="realisateur">
+  </div>
+
+  <div>
+    <label for="synopsis">Synopsis</label>
+    <textarea
+      id="synopsis"
+      formControlName="synopsis">
+    </textarea>
+  </div>
+
+  <div>
+    <label for="urlAffiche">URL de l'affiche</label>
+    <input
+      id="urlAffiche"
+      type="url"
+      formControlName="urlAffiche">
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="filmForm.invalid">
+    Ajouter le film
+  </button>
+
+</form>
