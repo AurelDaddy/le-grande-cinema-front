@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [],
   selector: 'app-admin-dashboard',
-  styleUrl: './admin-dashboard.scss',
+  imports: [RouterLink],
   templateUrl: './admin-dashboard.html',
+  styleUrl: './admin-dashboard.scss'
 })
-export class AdminDashboard {}
+export class AdminDashboard {
+
+}

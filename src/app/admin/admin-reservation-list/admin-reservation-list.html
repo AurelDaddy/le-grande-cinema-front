@@ -1,0 +1,42 @@
+<h1>Réservations de la séance</h1>
+
+@if (erreur()) {
+  <p>{{ erreur() }}</p>
+}
+
+@if (reservations().length === 0) {
+  <p>Aucune réservation pour cette séance.</p>
+}
+
+@if (tauxRemplissage() !== null) {
+  <p>Taux de remplissage de la séance: {{ tauxRemplissage() }}%</p>
+}
+
+@for (reservation of reservations(); track reservation.idReservation) {
+
+  <article>
+
+    <p>
+      Réservation n° {{ reservation.idReservation }}
+    </p>
+
+    <p>
+      Date : {{ reservation.dateReservation }}
+    </p>
+
+    <p>
+      Statut : {{ reservation.statut }}
+    </p>
+
+    <p>
+      Utilisateur : {{ reservation.idUtilisateur }}
+    </p>
+
+    <p>
+      Séance : {{ reservation.idSeance }}
+    </p>
+
+
+
+  </article>
+}

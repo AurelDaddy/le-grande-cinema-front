@@ -13,6 +13,7 @@ import { AdminFilmForm } from './admin/admin-film-form/admin-film-form';
 import { AdminSeanceForm } from './admin/admin-seance-form/admin-seance-form';
 import { AdminSeanceList } from './admin/admin-seance-list/admin-seance-list';
 import { AdminDashboard } from './admin/admin-dashboard/admin-dashboard';
+import { AdminReservationList } from './admin/admin-reservation-list/admin-reservation-list';
 
 export const routes: Routes = [
   {
@@ -69,6 +70,11 @@ export const routes: Routes = [
 {
   path: 'admin/films/new',
   component: AdminFilmForm,
+  canActivate: [adminGuard]
+},
+{
+  path: 'admin/seances/:idSeance/reservations',
+  component: AdminReservationList,
   canActivate: [adminGuard]
 },
 {

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Seance } from '../films/seance';
 import { CreateSeanceRequest } from './create-seance-request';
+import { Reservation } from '../reservation/reservation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,4 +28,13 @@ export class AdminSeanceService {
   createSeance(request: CreateSeanceRequest): Observable<Seance> {
     return this.http.post<Seance>(this.apiUrl, request);
   }
+
+  getReservationsBySeance(
+  idSeance: number
+): Observable<Reservation[]> {
+
+  return this.http.get<Reservation[]>(
+    `${this.apiUrl}/${idSeance}/reservations`
+  );
+}
 }
