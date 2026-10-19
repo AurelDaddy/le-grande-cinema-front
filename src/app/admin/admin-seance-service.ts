@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Seance } from '../films/seance';
+import { CreateSeanceRequest } from './create-seance-request';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,10 @@ export class AdminSeanceService {
 
   deleteSeance(idSeance: number): Observable<void> {
     return this.http.delete<void>(
-        `${this.apiUrl}/${idSeance}`
-  );
-}
+        `${this.apiUrl}/${idSeance}`);
+    }
+
+  createSeance(request: CreateSeanceRequest): Observable<Seance> {
+    return this.http.post<Seance>(this.apiUrl, request);
+  }
 }
