@@ -1,0 +1,44 @@
+<h1>Fréquentation</h1>
+
+<form [formGroup]="frequentationForm" (ngSubmit)="calculerFrequentation()">
+
+    <div>
+        <label for="dateDebut">
+            Date de début
+        </label>
+
+        <input id="dateDebut" type="datetime-local" formControlName="dateDebut">
+    </div>
+
+    <div>
+        <label for="dateFin">
+            Date de fin
+        </label>
+
+        <input id="dateFin" type="datetime-local" formControlName="dateFin">
+    </div>
+
+    <button type="submit" [disabled]="frequentationForm.invalid">
+        Calculer
+    </button>
+
+</form>
+
+@if (erreur()) {
+<p>{{ erreur() }}</p>
+}
+
+@if (tauxRemplissage() !== null) {
+
+    @if (tauxRemplissage() === 0) {
+        <p>
+            Aucune place réservée sur cette période.
+        </p>
+    } @else {
+        <p>
+            Taux de remplissage sur la période :
+            {{ tauxRemplissage() }} %
+        </p>
+    }
+
+}

@@ -9,28 +9,33 @@
       Films
     </a>
 
+    @if (
+    authService.utilisateurConnecte()?.typeUtilisateur === 'ADMIN' //si utilisateur existe alors lis typeUtillisateur
+    ) {
+    <a routerLink="/admin">
+      Administration
+    </a>
+    }
+
     @if (authService.utilisateurConnecte(); as utilisateur) {
 
-      <span>
-        Bonjour {{ utilisateur.prenom }}
-      </span>
+    <span>
+      Bonjour {{ utilisateur.prenom }}
+    </span>
 
-      <button
-        type="button"
-        (click)="deconnecter()"
-      >
-        Déconnexion
-      </button>
+    <button type="button" (click)="deconnecter()">
+      Déconnexion
+    </button>
 
     } @else {
 
-      <a routerLink="/login">
-        Connexion
-      </a>
+    <a routerLink="/login">
+      Connexion
+    </a>
 
-      <a routerLink="/register">
-        Inscription
-      </a>
+    <a routerLink="/register">
+      Inscription
+    </a>
 
     }
 

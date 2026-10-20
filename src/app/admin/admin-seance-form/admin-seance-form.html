@@ -1,0 +1,73 @@
+<h1>Créer une séance</h1>
+
+@if (erreur()) {
+<p>{{ erreur() }}</p>
+}
+
+<form [formGroup]="seanceForm" (ngSubmit)="creerSeance()">
+
+    <div>
+        <label for="film">Film</label>
+
+        <select id="film" formControlName="idFilm">
+
+            <option [value]="0">
+                Sélectionner un film
+            </option>
+
+            @for (film of films(); track film.idFilm) {
+            <option [value]="film.idFilm">
+                {{ film.titre }}
+            </option>
+            }
+
+        </select>
+    </div>
+
+    <div>
+        <label for="salle">Salle</label>
+
+        <select id="salle" formControlName="idSalle">
+
+            <option [value]="0">
+                Sélectionner une salle
+            </option>
+
+            @for (salle of salles(); track salle.idSalle) {
+            <option [value]="salle.idSalle">
+                Salle {{ salle.numeroSalle }}
+            </option>
+            }
+
+        </select>
+    </div>
+
+    <div>
+        <label for="dateHeure">Date et heure</label>
+
+        <input id="dateHeure" type="datetime-local" formControlName="dateHeure">
+    </div>
+
+    <div>
+        <label for="version">Version</label>
+
+        <select id="version" formControlName="version">
+            <option value="" disabled selected>
+                Sélectionner une version
+            </option>
+            <option value="VF">VF</option>
+            <option value="VOSTFR">VOSTFR</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="prix">Prix</label>
+
+        <input id="prix" type="number" min="0.01" step="0.01" formControlName="prix">
+    </div>
+
+    <button type="submit" [disabled]="seanceForm.invalid">
+        Créer la séance
+    </button>
+
+</form>

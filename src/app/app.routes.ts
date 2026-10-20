@@ -8,6 +8,13 @@ import { Reservation } from './reservation/reservation/reservation';
 import { Paiement } from './payment/paiement/paiement';
 import { BilletList } from './billet/billet-list/billet-list';
 import { BilletDetail } from './billet/billet-detail/billet-detail';
+import { adminGuard } from './core/admin-guard';
+import { AdminFilmForm } from './admin/admin-film-form/admin-film-form';
+import { AdminSeanceForm } from './admin/admin-seance-form/admin-seance-form';
+import { AdminSeanceList } from './admin/admin-seance-list/admin-seance-list';
+import { AdminDashboard } from './admin/admin-dashboard/admin-dashboard';
+import { AdminReservationList } from './admin/admin-reservation-list/admin-reservation-list';
+import { AdminFrequentation } from './admin/admin-frequentation/admin-frequentation';
 
 export const routes: Routes = [
   {
@@ -47,8 +54,38 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: '**',
-    redirectTo: ''
-  }
+  path: 'admin',
+  component: AdminDashboard,
+  canActivate: [adminGuard]
+},
+{
+  path: 'admin/seances',
+  component: AdminSeanceList,
+  canActivate: [adminGuard]
+},
+{
+  path: 'admin/seances/new',
+  component: AdminSeanceForm,
+  canActivate: [adminGuard]
+},
+{
+  path: 'admin/films/new',
+  component: AdminFilmForm,
+  canActivate: [adminGuard]
+},
+{
+  path: 'admin/seances/:idSeance/reservations',
+  component: AdminReservationList,
+  canActivate: [adminGuard]
+},
+{
+  path: 'admin/frequentation',
+  component: AdminFrequentation,
+  canActivate: [adminGuard]
+},
+{
+  path: '**',
+  redirectTo: ''
+}
 
 ];

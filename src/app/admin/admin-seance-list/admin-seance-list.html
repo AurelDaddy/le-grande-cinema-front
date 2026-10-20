@@ -1,0 +1,50 @@
+<h1>Gestion des séances</h1>
+
+<a routerLink="/admin/seances/new">
+    Ajouter une séance
+</a>
+
+@if (erreur()) {
+<p>{{ erreur() }}</p>
+}
+
+@if (seances().length === 0) {
+<p>Aucune séance.</p>
+}
+
+@for (seance of seances(); track seance.idSeance) {
+<article>
+    <p>
+        Séance n° {{ seance.idSeance }}
+    </p>
+
+    <p>
+        Date : {{ seance.dateHeure }}
+    </p>
+
+    <p>
+        Version : {{ seance.version }}
+    </p>
+
+    <p>
+        Prix : {{ seance.prix }} €
+    </p>
+
+    <p>
+        Film : {{ seance.idFilm }}
+    </p>
+
+    <p>
+        Salle : {{ seance.idSalle }}
+    </p>
+
+    <button type="button" (click)="deleteSeance(seance.idSeance)">
+        Supprimer
+    </button>
+
+    <a [routerLink]="['/admin/seances', seance.idSeance, 'reservations']">
+        Voir les réservations
+    </a>
+
+</article>
+}
