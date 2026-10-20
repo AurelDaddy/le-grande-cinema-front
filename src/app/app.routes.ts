@@ -14,6 +14,7 @@ import { AdminSeanceForm } from './admin/admin-seance-form/admin-seance-form';
 import { AdminSeanceList } from './admin/admin-seance-list/admin-seance-list';
 import { AdminDashboard } from './admin/admin-dashboard/admin-dashboard';
 import { AdminReservationList } from './admin/admin-reservation-list/admin-reservation-list';
+import { AdminFrequentation } from './admin/admin-frequentation/admin-frequentation';
 
 export const routes: Routes = [
   {
@@ -75,6 +76,11 @@ export const routes: Routes = [
 {
   path: 'admin/seances/:idSeance/reservations',
   component: AdminReservationList,
+  canActivate: [adminGuard]
+},
+{
+  path: 'admin/frequentation',
+  component: AdminFrequentation,
   canActivate: [adminGuard]
 },
 {
