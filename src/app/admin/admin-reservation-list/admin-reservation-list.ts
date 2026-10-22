@@ -1,9 +1,9 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { AdminSeanceService } from '../admin-seance-service';
+import { AdminSeanceService } from '../admin-seance.service';
 import { Reservation } from '../../reservation/reservation.model';
-import { AdminFrequentationService } from '../admin-frequentation-service';
+import { AdminFrequentationService } from '../admin-frequentation.service';
 
 @Component({
   selector: 'app-admin-reservation-list',

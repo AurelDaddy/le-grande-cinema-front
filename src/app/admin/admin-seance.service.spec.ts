@@ -8,7 +8,7 @@ import {
     provideHttpClientTesting
 } from '@angular/common/http/testing';
 
-import { AdminSeanceService } from './admin-seance-service';
+import { AdminSeanceService } from './admin-seance.service';
 
 describe('AdminSeanceService', () => {
 

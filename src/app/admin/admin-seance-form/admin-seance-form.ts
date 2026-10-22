@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 import { Film } from '../../films/films';
 import { Salle } from '../salle';
 
-import { AdminFilmService } from '../admin-film-service';
-import { AdminSalleService } from '../admin-salle-service';
-import { AdminSeanceService } from '../admin-seance-service';
+import { AdminFilmService } from '../admin-film.service';
+import { AdminSalleService } from '../admin-salle.service';
+import { AdminSeanceService } from '../admin-seance.service';
 
 import { CreateSeanceRequest } from '../create-seance-request';
 

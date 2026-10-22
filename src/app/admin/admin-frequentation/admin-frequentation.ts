@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { AdminFrequentationService } from '../admin-frequentation-service';
+import { AdminFrequentationService } from '../admin-frequentation.service';
 
 @Component({
   selector: 'app-admin-frequentation',
