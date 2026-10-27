@@ -22,19 +22,16 @@ export class AdminSeanceService {
 
   deleteSeance(idSeance: number): Observable<void> {
     return this.http.delete<void>(
-        `${this.apiUrl}/${idSeance}`);
-    }
+      `${this.apiUrl}/${idSeance}`);
+  }
 
   createSeance(request: CreateSeanceRequest): Observable<Seance> {
     return this.http.post<Seance>(this.apiUrl, request);
   }
 
-  getReservationsBySeance(
-  idSeance: number
-): Observable<Reservation[]> {
+  getReservationsBySeance(idSeance: number): Observable<Reservation[]> {
 
-  return this.http.get<Reservation[]>(
-    `${this.apiUrl}/${idSeance}/reservations`
-  );
-}
+    return this.http.get<Reservation[]>(
+      `${this.apiUrl}/${idSeance}/reservations`);
+  }
 }

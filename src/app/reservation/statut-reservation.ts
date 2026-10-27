@@ -1,4 +1,4 @@
 export type StatutReservation =
-  'EN_ATTENTE'
-  'CONFIRMEE'
+  'EN_ATTENTE' |
+  'CONFIRMEE' |
   'ANNULEE';

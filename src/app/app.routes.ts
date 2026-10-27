@@ -5,7 +5,7 @@ import { Register } from './auth/register/register';
 import { Login } from './auth/login/login';
 import { authGuard } from './core/auth-guard';
 import { Reservation } from './reservation/reservation/reservation';
-import { Paiement } from './payment/paiement/paiement';
+import { Paiement } from './paiement/paiement/paiement';
 import { BilletList } from './billet/billet-list/billet-list';
 import { BilletDetail } from './billet/billet-detail/billet-detail';
 import { adminGuard } from './core/admin-guard';

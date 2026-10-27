@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AdminFilmService } from '../admin-film-service';
+import { AdminFilmService } from '../admin-film.service';
 import { CreateFilmRequest } from '../create-film-request';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { AdminSeanceService } from '../admin-seance-service';
+import { AdminSeanceService } from '../admin-seance.service';
 import { Seance } from '../../films/seance';
 
 @Component({
