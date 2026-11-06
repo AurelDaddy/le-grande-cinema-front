@@ -1,43 +1,90 @@
+
 <header>
-  <nav>
+  <nav class="navbar navbar-expand-lg bg-dark"
+       data-bs-theme="dark">
 
-    <a routerLink="/">
-      Le Grande Cinema
-    </a>
+    <div class="container">
 
-    <a routerLink="/">
-      Films
-    </a>
+      <!-- Logo / accueil -->
+      <a class="navbar-brand" routerLink="/">
+        Le Grande Cinema
+      </a>
 
-    @if (
-    authService.utilisateurConnecte()?.typeUtilisateur === 'ADMIN' //si utilisateur existe alors lis typeUtillisateur
-    ) {
-    <a routerLink="/admin">
-      Administration
-    </a>
-    }
+      <!-- Menu hamburger sur mobile -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        aria-controls="menuPrincipal"
+        [attr.aria-expanded]="menuOuvert()"
+        aria-label="Afficher le menu"
+        (click)="basculerMenu()">
 
-    @if (authService.utilisateurConnecte(); as utilisateur) {
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <span>
-      Bonjour {{ utilisateur.prenom }}
-    </span>
+      <!-- Liens de navigation -->
+      <div
+        class="collapse navbar-collapse"
+        id="menuPrincipal"
+        [class.show]="menuOuvert()">
 
-    <button type="button" (click)="deconnecter()">
-      Déconnexion
-    </button>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-    } @else {
+          <li class="nav-item">
+            <a class="nav-link"
+               routerLink="/"
+               (click)="fermerMenu()">
+              Films
+            </a>
+          </li>
 
-    <a routerLink="/login">
-      Connexion
-    </a>
+          @if (authService.utilisateurConnecte()?.typeUtilisateur === 'ADMIN') {
+            <li class="nav-item">
+              <a class="nav-link"
+                 routerLink="/admin"
+                 (click)="fermerMenu()">
+                Administration
+              </a>
+            </li>
+          }
 
-    <a routerLink="/register">
-      Inscription
-    </a>
+        </ul>
 
-    }
+        <div class="d-flex flex-column flex-lg-row
+                    align-items-lg-center gap-2">
 
+          @if (authService.utilisateurConnecte(); as utilisateur) {
+
+            <span class="navbar-text">
+              Bonjour {{ utilisateur.prenom }}
+            </span>
+
+            <button
+              class="btn btn-outline-light"
+              type="button"
+              (click)="deconnecter()">
+              Déconnexion
+            </button>
+
+          } @else {
+
+            <a class="btn btn-outline-light"
+               routerLink="/login"
+               (click)="fermerMenu()">
+              Connexion
+            </a>
+
+            <a class="btn btn-primary"
+               routerLink="/register"
+               (click)="fermerMenu()">
+              Inscription
+            </a>
+
+          }
+
+        </div>
+
+      </div>
+    </div>
   </nav>
 </header>
