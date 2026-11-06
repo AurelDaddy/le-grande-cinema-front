@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Seance } from '../films/seance';
 import { CreateSeanceRequest } from './create-seance-request';
 import { Reservation } from '../reservation/reservation.model';
+import { API_BASE_URL } from '../core/api.config';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,7 @@ export class AdminSeanceService {
 
   private readonly http = inject(HttpClient);
 
-  private readonly apiUrl =
-    'http://localhost:8080/api/admin/seances';
+  private readonly apiUrl = `${API_BASE_URL}/api/admin/seances`;
 
   getAllSeances(): Observable<Seance[]> {
     return this.http.get<Seance[]>(this.apiUrl);

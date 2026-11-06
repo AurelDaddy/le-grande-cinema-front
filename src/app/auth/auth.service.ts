@@ -7,14 +7,14 @@ import { Observable, tap } from 'rxjs';
 
 import { CreateRegisterRequest } from './create-register-request';
 import { Utilisateur } from './utilisateur';
+import { API_BASE_URL } from '../core/api.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private readonly apiUrl =
-    'http://localhost:8080/api/auth';
+  private readonly apiUrl = `${API_BASE_URL}/api/auth`;
 
   utilisateurConnecte =
     signal<Utilisateur | null>(null);
