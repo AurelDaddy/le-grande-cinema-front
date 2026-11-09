@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Reservation } from './reservation.model';
+import { API_BASE_URL } from '../core/api.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservationService {
 
-  private readonly apiUrl =
-    'http://localhost:8080/api/reservations';
+  private readonly apiUrl = `${API_BASE_URL}/api/reservations`;
 
   constructor(private http: HttpClient) {}
 

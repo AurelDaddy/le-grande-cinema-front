@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Billet } from './billet.model';
+import { API_BASE_URL } from '../core/api.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BilletService {
 
-  private readonly apiUrl =
-    'http://localhost:8080/api/billets';
+  private readonly apiUrl = `${API_BASE_URL}/api/billets`;
 
   constructor(private http: HttpClient) {}
 

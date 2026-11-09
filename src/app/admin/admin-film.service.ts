@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Film } from '../films/films';
 import { CreateFilmRequest } from './create-film-request';
+import { API_BASE_URL } from '../core/api.config';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,7 @@ export class AdminFilmService {
 
   private readonly http = inject(HttpClient);
 
-  private readonly apiUrl =
-    'http://localhost:8080/api/admin/films';
+  private readonly apiUrl = `${API_BASE_URL}/api/admin/films`;
 
   getAllFilms(): Observable<Film[]> {
     return this.http.get<Film[]>(this.apiUrl);

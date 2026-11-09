@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 import { Film } from './films';
+import { API_BASE_URL } from '../core/api.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilmService {
 
-  private readonly apiUrl = 'http://localhost:8080/api/films';
+  private readonly apiUrl = `${API_BASE_URL}/api/films`
 
   constructor(private http: HttpClient) {
   }

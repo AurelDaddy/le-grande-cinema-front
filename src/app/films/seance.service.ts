@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 import { Seance } from './seance';
+import { API_BASE_URL } from '../core/api.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SeanceService {
 
-  private readonly apiUrl = 'http://localhost:8080/api';
+  private readonly apiUrl = `${API_BASE_URL}/api`;
 
   constructor(private http: HttpClient) {}
 

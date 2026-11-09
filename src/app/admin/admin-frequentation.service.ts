@@ -2,6 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { API_BASE_URL } from '../core/api.config';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -9,8 +11,7 @@ export class AdminFrequentationService {
 
     private readonly http = inject(HttpClient);
 
-    private readonly apiUrl =
-        'http://localhost:8080/api/admin/frequentation';
+    private readonly apiUrl = `${API_BASE_URL}/api/admin/frequentation`;
 
     getTauxDeRemplissage(
         idSeance: number

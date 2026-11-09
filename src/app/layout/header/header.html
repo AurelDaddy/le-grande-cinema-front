@@ -38,6 +38,16 @@
             </a>
           </li>
 
+          @if (authService.utilisateurConnecte()) {
+            <li class="nav-item">
+              <a class="nav-link"
+                 routerLink="/billets"
+                 (click)="fermerMenu()">
+                Mes billets
+              </a>
+            </li>
+          }
+
           @if (authService.utilisateurConnecte()?.typeUtilisateur === 'ADMIN') {
             <li class="nav-item">
               <a class="nav-link"
