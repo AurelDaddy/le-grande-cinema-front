@@ -1,0 +1,31 @@
+
+.cinema-footer {
+  background-color: var(--cinema-dark);
+  color: var(--cinema-ivory);
+  border-top: 2px solid var(--cinema-gold);
+}
+
+.footer-titre {
+  color: var(--cinema-gold-light);
+}
+
+.cinema-footer a {
+  color: var(--cinema-ivory);
+  text-decoration: none;
+}
+
+.cinema-footer a:hover {
+  color: var(--cinema-gold-light);
+  text-decoration: underline;
+}
+
+.footer-separation {
+  border-color: var(--cinema-gold);
+  opacity: 0.5;
+}
+
+.reseau-social {
+  color: var(--cinema-gold-light);
+  display: inline-flex;
+  align-items: center;
+}

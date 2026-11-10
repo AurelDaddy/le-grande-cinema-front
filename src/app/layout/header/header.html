@@ -1,0 +1,77 @@
+<header>
+  <nav class="navbar navbar-expand-lg cinema-navbar" data-bs-theme="dark">
+
+    <div class="container">
+
+      <!-- Logo / accueil -->
+      <a class="navbar-brand" routerLink="/" (click)="fermerMenu()" aria-label="Le Grande Cinema - Accueil">
+        <img src="/logo-cinema.png" alt="Le Grande Cinema" class="cinema-logo">
+      </a>
+
+      <!-- Menu hamburger sur mobile -->
+      <button class="navbar-toggler" type="button" aria-controls="menuPrincipal" [attr.aria-expanded]="menuOuvert()"
+        aria-label="Afficher le menu" (click)="basculerMenu()">
+
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Liens de navigation -->
+      <div class="collapse navbar-collapse" id="menuPrincipal" [class.show]="menuOuvert()">
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" (click)="fermerMenu()">
+              Films
+            </a>
+          </li>
+
+          @if (authService.utilisateurConnecte()) {
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/billets" (click)="fermerMenu()">
+              Mes billets
+            </a>
+          </li>
+          }
+
+          @if (authService.utilisateurConnecte()?.typeUtilisateur === 'ADMIN') {
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin" (click)="fermerMenu()">
+              Administration
+            </a>
+          </li>
+          }
+
+        </ul>
+
+        <div class="d-flex flex-column flex-lg-row
+                    align-items-lg-center gap-2">
+
+          @if (authService.utilisateurConnecte(); as utilisateur) {
+
+          <span class="navbar-text">
+            Bonjour {{ utilisateur.prenom }}
+          </span>
+
+          <button class="btn btn-outline-light" type="button" (click)="deconnecter()">
+            Déconnexion
+          </button>
+
+          } @else {
+
+          <a class="btn btn-outline-light" routerLink="/login" (click)="fermerMenu()">
+            Connexion
+          </a>
+
+          <a class="btn btn-primary" routerLink="/register" (click)="fermerMenu()">
+            Inscription
+          </a>
+
+          }
+
+        </div>
+
+      </div>
+    </div>
+  </nav>
+</header>

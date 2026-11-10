@@ -1,0 +1,134 @@
+
+<main class="container py-5">
+
+  <div class="row justify-content-center">
+
+    <div class="col-12 col-md-8 col-lg-6">
+
+      <section class="card shadow-sm border-0">
+
+        <div class="card-body p-4 p-md-5">
+
+          <h1 class="h2 text-center mb-3">
+            Paiement
+          </h1>
+
+          @if (paiementEffectue(); as paiement) {
+
+            <!-- Résultat du paiement -->
+            <div
+              class="alert"
+              [class.alert-success]="paiement.statut === 'ACCEPTE'"
+              [class.alert-warning]="paiement.statut !== 'ACCEPTE'"
+              role="status"
+            >
+              @if (paiement.statut === 'ACCEPTE') {
+                Paiement accepté !
+              } @else {
+                Statut du paiement : {{ paiement.statut }}
+              }
+            </div>
+
+            <div class="paiement-recap rounded p-4 mb-4">
+
+              <h2 class="h5 mb-4">
+                Récapitulatif du paiement
+              </h2>
+
+              <div
+                class="d-flex justify-content-between
+                       align-items-center mb-3"
+              >
+                <span>Montant</span>
+
+                <strong class="fs-4">
+                  {{ paiement.montant }} €
+                </strong>
+              </div>
+
+              <div
+                class="d-flex justify-content-between
+                       gap-3 mb-3"
+              >
+                <span>Statut</span>
+                <strong>{{ paiement.statut }}</strong>
+              </div>
+
+              <div class="mb-0">
+                <span class="d-block mb-1">
+                  Référence de paiement
+                </span>
+
+                <strong>
+                  {{ paiement.referencePaiement }}
+                </strong>
+              </div>
+
+            </div>
+
+            @if (paiement.statut === 'ACCEPTE') {
+
+              <a
+                [routerLink]="[
+                  '/billet',
+                  paiement.idReservation
+                ]"
+                class="btn btn-primary w-100"
+              >
+                Voir mon billet
+              </a>
+
+            }
+
+          } @else {
+
+            <!-- Confirmation du paiement -->
+            <p class="text-muted text-center mb-4">
+              Vous êtes sur le point de confirmer
+              le paiement de votre réservation.
+            </p>
+
+            <div class="alert alert-info mb-4">
+              Ceci est un paiement simulé.
+              Aucun prélèvement bancaire réel
+              ne sera effectué.
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-primary w-100"
+              (click)="payer()"
+            >
+              Confirmer le paiement
+            </button>
+
+          }
+
+          @if (erreur()) {
+
+            <div
+              class="alert alert-danger mt-4"
+              role="alert"
+            >
+              {{ erreur() }}
+            </div>
+
+          }
+
+          <div class="text-center mt-4">
+
+            <a routerLink="/" class="text-decoration-none">
+              Retour aux films
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+</main>

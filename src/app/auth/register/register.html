@@ -1,0 +1,186 @@
+
+<main class="container py-5">
+
+  <div class="row justify-content-center">
+
+    <div class="col-12 col-md-8 col-lg-6">
+
+      <section class="card shadow-sm border-0">
+
+        <div class="card-body p-4 p-md-5">
+
+          <h1 class="h2 text-center mb-2">
+            Créer un compte
+          </h1>
+
+          <p class="text-muted text-center mb-4">
+            Inscrivez-vous pour réserver vos séances.
+          </p>
+
+          <form
+            [formGroup]="registerForm"
+            (ngSubmit)="inscrire()"
+          >
+
+            <div class="row g-3">
+
+              <!-- Prénom -->
+              <div class="col-12 col-md-6">
+
+                <label for="prenom" class="form-label">
+                  Prénom
+                </label>
+
+                <input
+                  id="prenom"
+                  type="text"
+                  formControlName="prenom"
+                  class="form-control"
+                  autocomplete="given-name"
+                  [class.is-invalid]="registerForm.controls.prenom.invalid
+                    && registerForm.controls.prenom.touched"
+                >
+
+                @if (registerForm.controls.prenom.invalid
+                  && registerForm.controls.prenom.touched) {
+                  <div class="invalid-feedback">
+                    Le prénom est obligatoire.
+                  </div>
+                }
+
+              </div>
+
+              <!-- Nom -->
+              <div class="col-12 col-md-6">
+
+                <label for="nom" class="form-label">
+                  Nom
+                </label>
+
+                <input
+                  id="nom"
+                  type="text"
+                  formControlName="nom"
+                  class="form-control"
+                  autocomplete="family-name"
+                  [class.is-invalid]="registerForm.controls.nom.invalid
+                    && registerForm.controls.nom.touched"
+                >
+
+                @if (registerForm.controls.nom.invalid
+                  && registerForm.controls.nom.touched) {
+                  <div class="invalid-feedback">
+                    Le nom est obligatoire.
+                  </div>
+                }
+
+              </div>
+
+              <!-- Email -->
+              <div class="col-12">
+
+                <label for="email" class="form-label">
+                  Adresse e-mail
+                </label>
+
+                <input
+                  id="email"
+                  type="email"
+                  formControlName="email"
+                  class="form-control"
+                  autocomplete="email"
+                  [class.is-invalid]="registerForm.controls.email.invalid
+                    && registerForm.controls.email.touched"
+                >
+
+                @if (registerForm.controls.email.invalid
+                  && registerForm.controls.email.touched) {
+                  <div class="invalid-feedback">
+                    Saisissez une adresse e-mail valide.
+                  </div>
+                }
+
+              </div>
+
+              <!-- Mot de passe -->
+              <div class="col-12">
+
+                <label for="motDePasse" class="form-label">
+                  Mot de passe
+                </label>
+
+                <input
+                  id="motDePasse"
+                  type="password"
+                  formControlName="motDePasse"
+                  class="form-control"
+                  autocomplete="new-password"
+                  [class.is-invalid]="registerForm.controls.motDePasse.invalid
+                    && registerForm.controls.motDePasse.touched"
+                >
+
+                @if (registerForm.controls.motDePasse.invalid
+                  && registerForm.controls.motDePasse.touched) {
+                  <div class="invalid-feedback">
+                    Le mot de passe est obligatoire.
+                  </div>
+                }
+
+              </div>
+
+              <!-- Téléphone -->
+              <div class="col-12">
+
+                <label for="telephone" class="form-label">
+                  Téléphone (facultatif)
+                </label>
+
+                <input
+                  id="telephone"
+                  type="tel"
+                  formControlName="telephone"
+                  class="form-control"
+                  autocomplete="tel"
+                >
+
+              </div>
+
+            </div>
+
+            <!-- Messages -->
+            @if (messageSucces()) {
+              <div class="alert alert-success mt-4" role="status">
+                {{ messageSucces() }}
+              </div>
+            }
+
+            @if (messageErreur()) {
+              <div class="alert alert-danger mt-4" role="alert">
+                {{ messageErreur() }}
+              </div>
+            }
+
+            <button
+              type="submit"
+              class="btn btn-primary w-100 mt-4"
+              [disabled]="registerForm.invalid"
+            >
+              Créer mon compte
+            </button>
+
+          </form>
+
+          <p class="text-center mt-4 mb-0">
+            Déjà inscrit ?
+            <a href="/login">Se connecter</a>
+          </p>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+</main>

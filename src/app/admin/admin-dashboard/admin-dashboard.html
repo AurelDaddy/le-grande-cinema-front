@@ -1,0 +1,141 @@
+
+<main class="container py-5">
+
+  <header class="mb-5">
+
+    <h1 class="mb-2">
+      Administration
+    </h1>
+
+    <p class="text-muted">
+      Gérez les films, les séances et
+      consultez la fréquentation de votre cinéma.
+    </p>
+
+  </header>
+
+  <section aria-label="Fonctionnalités d'administration">
+
+    <div class="row g-4">
+
+      <!-- Fréquentation -->
+      <div class="col-12 col-md-6">
+
+        <article class="card h-100 shadow-sm border-0">
+
+          <div class="card-body d-flex flex-column p-4">
+
+            <h2 class="h4">
+              Fréquentation
+            </h2>
+
+            <p class="text-muted">
+              Consultez les statistiques de
+              remplissage sur une période.
+            </p>
+
+            <a
+              routerLink="/admin/frequentation"
+              class="btn btn-primary mt-auto"
+            >
+              Voir la fréquentation
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+      <!-- Gestion des séances -->
+      <div class="col-12 col-md-6">
+
+        <article class="card h-100 shadow-sm border-0">
+
+          <div class="card-body d-flex flex-column p-4">
+
+            <h2 class="h4">
+              Séances
+            </h2>
+
+            <p class="text-muted">
+              Consultez les séances programmées
+              et leurs réservations.
+            </p>
+
+            <a
+              routerLink="/admin/seances"
+              class="btn btn-primary mt-auto"
+            >
+              Gérer les séances
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+      <!-- Nouvelle séance -->
+      <div class="col-12 col-md-6">
+
+        <article class="card h-100 shadow-sm border-0">
+
+          <div class="card-body d-flex flex-column p-4">
+
+            <h2 class="h4">
+              Nouvelle séance
+            </h2>
+
+            <p class="text-muted">
+              Programmez une nouvelle projection
+              pour un film du catalogue.
+            </p>
+
+            <a
+              routerLink="/admin/seances/new"
+              class="btn btn-primary mt-auto"
+            >
+              Créer une séance
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+      <!-- Ajout de film -->
+      <div class="col-12 col-md-6">
+
+        <article class="card h-100 shadow-sm border-0">
+
+          <div class="card-body d-flex flex-column p-4">
+
+            <h2 class="h4">
+              Films
+            </h2>
+
+            <p class="text-muted">
+              Ajoutez un nouveau film
+              au catalogue du cinéma.
+            </p>
+
+            <a
+              routerLink="/admin/films/new"
+              class="btn btn-primary mt-auto"
+            >
+              Ajouter un film
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>

@@ -1,0 +1,130 @@
+
+<main class="container py-5">
+
+  <div class="row justify-content-center">
+
+    <div class="col-12 col-md-8 col-lg-6">
+
+      <h1 class="h2 text-center mb-4">
+        Mon billet
+      </h1>
+
+      @if (billet(); as billetCourant) {
+
+        <article class="billet shadow">
+
+          <div class="billet-entete text-center p-4">
+
+            <h2 class="h4 mb-2">
+              LE GRANDE CINEMA
+            </h2>
+
+            <p class="mb-0">
+              BILLET NUMÉRIQUE
+            </p>
+
+          </div>
+
+          <div class="billet-contenu p-4">
+
+            <h3 class="h4 mb-4">
+              {{ billetCourant.titreFilm }}
+            </h3>
+
+            <div class="row g-3 mb-4">
+
+              <div class="col-6">
+                <span class="billet-label">Date</span>
+                <p class="mb-0">
+                  {{ billetCourant.dateHeure | date:'dd/MM/yyyy' }}
+                </p>
+              </div>
+
+              <div class="col-6">
+                <span class="billet-label">Heure</span>
+                <p class="mb-0">
+                  {{ billetCourant.dateHeure | date:'HH:mm' }}
+                </p>
+              </div>
+
+              <div class="col-6">
+                <span class="billet-label">Version</span>
+                <p class="mb-0">
+                  {{ billetCourant.version }}
+                </p>
+              </div>
+
+              <div class="col-6">
+                <span class="billet-label">Salle</span>
+                <p class="mb-0">
+                  N° {{ billetCourant.numeroSalle }}
+                </p>
+              </div>
+
+            </div>
+
+            <div class="mb-4">
+              <span class="billet-label">Places</span>
+
+              <p class="fw-semibold mb-0">
+                {{ billetCourant.places.join(', ') }}
+              </p>
+            </div>
+
+            <div class="separation mb-4"></div>
+
+            <p>
+              <span class="billet-label">Titulaire</span>
+
+              {{ billetCourant.prenom }}
+              {{ billetCourant.nom }}
+            </p>
+
+            <p>
+              <span class="billet-label">Réservation</span>
+
+              #{{ billetCourant.idReservation }}
+            </p>
+
+            <p class="mb-0">
+              <span class="billet-label">
+                Référence paiement
+              </span>
+
+              {{ billetCourant.referencePaiement }}
+            </p>
+
+          </div>
+
+        </article>
+
+        <div class="text-center mt-4">
+
+          <a
+            routerLink="/billets"
+            class="btn btn-primary"
+          >
+            Mes billets
+          </a>
+
+        </div>
+
+      } @else if (erreur()) {
+
+        <div class="alert alert-danger" role="alert">
+          {{ erreur() }}
+        </div>
+
+      } @else {
+
+        <p class="text-center text-muted">
+          Chargement du billet...
+        </p>
+
+      }
+
+    </div>
+
+  </div>
+
+</main>

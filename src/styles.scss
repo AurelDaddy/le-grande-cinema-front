@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+/* Styles globaux pour Le Grande Cinema */
+:root {
+  --cinema-dark: #141820;
+  --cinema-gold: #B68B45;
+  --cinema-gold-light: #D6AC64;
+  --cinema-ivory: #F6F2EA;
+}
+
+/* Fond général */
+
+body {
+  background-color: var(--cinema-ivory);
+  color: var(--cinema-dark);
+}
+
+/* Boutons principaux Bootstrap */
+
+.btn-primary {
+  --bs-btn-color: #141820;
+  --bs-btn-bg: #B68B45;
+  --bs-btn-border-color: #B68B45;
+
+  --bs-btn-hover-color: #141820;
+  --bs-btn-hover-bg: #D6AC64;
+  --bs-btn-hover-border-color: #D6AC64;
+
+  --bs-btn-active-color: #141820;
+  --bs-btn-active-bg: #D6AC64;
+  --bs-btn-active-border-color: #D6AC64;
+
+  --bs-btn-disabled-color: #141820;
+  --bs-btn-disabled-bg: #B68B45;
+  --bs-btn-disabled-border-color: #B68B45;
+}
+
+/* Liens */
+
+a:not(.btn):not(.nav-link):not(.navbar-brand) {
+  color: #80602F;
+}
+
+a:not(.btn):not(.nav-link):not(.navbar-brand):hover {
+  color: #4F381A;
+}
+
+/* Champs de formulaire */
+
+.form-control:focus {
+  border-color: var(--cinema-gold);
+  box-shadow: 0 0 0 0.25rem rgba(182, 139, 69, 0.25);
+}
