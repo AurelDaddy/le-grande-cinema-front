@@ -1,3 +1,4 @@
+
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
@@ -21,6 +22,9 @@ export class BilletList {
   protected readonly erreur =
     signal<string | null>(null);
 
+  //Indique si les billets sont en cours de chargement
+  protected readonly chargement = signal(true);
+
   ngOnInit(): void {
 
     this.billetService
@@ -28,11 +32,14 @@ export class BilletList {
       .subscribe({
         next: (billets) => {
           this.billets.set(billets);
+          this.erreur.set(null);
+          this.chargement.set(false);
         },
         error: () => {
           this.erreur.set(
             'Impossible de récupérer vos billets.'
           );
+          this.chargement.set(false);
         }
       });
   }
