@@ -1,49 +1,103 @@
-<h1>Mes billets</h1>
 
-@if (billets().length === 0) {
+<main class="container py-5">
 
-  <p>
-    Vous n'avez aucun billet.
-  </p>
+  <h1 class="mb-4">Mes billets</h1>
 
-} @else {
+  @if (erreur()) {
 
-  @for (billet of billets(); track billet.idReservation) {
+    <div class="alert alert-danger" role="alert">
+      {{ erreur() }}
+    </div>
 
-    <article>
+  } @else if (billets().length === 0) {
 
-      <h2>
-        {{ billet.titreFilm }}
-      </h2>
+    <div class="alert alert-info">
+      Vous n'avez aucun billet pour le moment.
+    </div>
 
-      <p>
-        {{ billet.dateHeure }}
-      </p>
+    <a routerLink="/" class="btn btn-primary">
+      Découvrir les films
+    </a>
 
-      <p>
-        Salle {{ billet.numeroSalle }}
-      </p>
+  } @else {
 
-      <p>
-        Places :
-        {{ billet.places.join(', ') }}
-      </p>
+    <div class="row g-4">
 
-      <a
-        [routerLink]="[
-          '/billet',
-          billet.idReservation
-        ]"
-      >
-        Voir le billet
-      </a>
+      @for (billet of billets(); track billet.idReservation) {
 
-    </article>
+        <div class="col-12 col-md-6 col-lg-4">
+
+          <article class="card h-100 shadow-sm">
+
+            <div class="card-header billet-entete">
+
+              <span class="fw-semibold">
+                LE GRANDE CINEMA
+              </span>
+
+            </div>
+
+            <div class="card-body d-flex flex-column">
+
+              <div
+                class="d-flex justify-content-between
+                       align-items-start gap-2 mb-3"
+              >
+
+                <h2 class="card-title h5 mb-0">
+                  {{ billet.titreFilm }}
+                </h2>
+
+                <span class="badge text-bg-secondary">
+                  {{ billet.version }}
+                </span>
+
+              </div>
+
+              <p class="mb-2">
+
+                <strong>Séance :</strong>
+
+                {{ billet.dateHeure | date:'dd/MM/yyyy' }}
+                à
+                {{ billet.dateHeure | date:'HH:mm' }}
+
+              </p>
+
+              <p class="mb-2">
+                <strong>Salle :</strong>
+                {{ billet.numeroSalle }}
+              </p>
+
+              <p class="mb-3">
+                <strong>Places :</strong>
+                {{ billet.places.join(', ') }}
+              </p>
+
+              <p class="text-muted small">
+                Réservation #{{ billet.idReservation }}
+              </p>
+
+              <a
+                [routerLink]="[
+                  '/billet',
+                  billet.idReservation
+                ]"
+                class="btn btn-primary mt-auto"
+              >
+                Voir mon billet
+              </a>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      }
+
+    </div>
+
   }
-}
 
-@if (erreur()) {
-  <p>
-    {{ erreur() }}
-  </p>
-}
+</main>

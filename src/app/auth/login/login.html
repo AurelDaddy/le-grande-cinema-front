@@ -1,49 +1,113 @@
-<section>
 
-  <h1>Connexion</h1>
+<main class="container py-5">
 
-  <form
-    [formGroup]="loginForm"
-    (ngSubmit)="connecter()"
-  >
+  <div class="row justify-content-center">
 
-    <div>
-      <label for="email">
-        Email
-      </label>
+    <div class="col-12 col-md-8 col-lg-5">
 
-      <input
-        id="email"
-        type="email"
-        formControlName="email"
-      >
+      <section class="card shadow-sm border-0">
+
+        <div class="card-body p-4 p-md-5">
+
+          <h1 class="h2 text-center mb-2">
+            Connexion
+          </h1>
+
+          <p class="text-muted text-center mb-4">
+            Connectez-vous pour réserver vos places.
+          </p>
+
+          <form
+            [formGroup]="loginForm"
+            (ngSubmit)="connecter()"
+          >
+
+            <div class="mb-3">
+
+              <label for="email" class="form-label">
+                Adresse e-mail
+              </label>
+
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                class="form-control"
+                autocomplete="email"
+                placeholder="exemple@email.com"
+                [class.is-invalid]="loginForm.controls.email.invalid
+                  && loginForm.controls.email.touched"
+              >
+
+              @if (loginForm.controls.email.invalid
+                && loginForm.controls.email.touched) {
+
+                <div class="invalid-feedback">
+                  Saisissez une adresse e-mail valide.
+                </div>
+
+              }
+
+            </div>
+
+            <div class="mb-4">
+
+              <label for="motDePasse" class="form-label">
+                Mot de passe
+              </label>
+
+              <input
+                id="motDePasse"
+                type="password"
+                formControlName="motDePasse"
+                class="form-control"
+                autocomplete="current-password"
+                [class.is-invalid]="loginForm.controls.motDePasse.invalid
+                  && loginForm.controls.motDePasse.touched"
+              >
+
+              @if (loginForm.controls.motDePasse.invalid
+                && loginForm.controls.motDePasse.touched) {
+
+                <div class="invalid-feedback">
+                  Le mot de passe est obligatoire.
+                </div>
+
+              }
+
+            </div>
+
+            @if (messageErreur()) {
+
+              <div class="alert alert-danger" role="alert">
+                {{ messageErreur() }}
+              </div>
+
+            }
+
+            <button
+              type="submit"
+              class="btn btn-primary w-100"
+              [disabled]="loginForm.invalid"
+            >
+              Se connecter
+            </button>
+
+          </form>
+
+          <p class="text-center mt-4 mb-0">
+            Pas encore de compte ?
+            <a routerLink="/register">
+              Créer un compte
+            </a>
+          </p>
+
+        </div>
+
+      </section>
+
     </div>
 
-    <div>
-      <label for="motDePasse">
-        Mot de passe
-      </label>
+  </div>
 
-      <input
-        id="motDePasse"
-        type="password"
-        formControlName="motDePasse"
-      >
-    </div>
-
-    <button
-      type="submit"
-      [disabled]="loginForm.invalid"
-    >
-      Se connecter
-    </button>
-
-  </form>
-
-  @if (messageErreur()) {
-    <p>
-      {{ messageErreur() }}
-    </p>
-  }
-
-</section>
+</main>

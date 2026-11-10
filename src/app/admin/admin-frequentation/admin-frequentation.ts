@@ -1,11 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { DecimalPipe } from '@angular/common';
 
 import { AdminFrequentationService } from '../admin-frequentation.service';
 
 @Component({
   selector: 'app-admin-frequentation',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink, DecimalPipe],
   templateUrl: './admin-frequentation.html',
   styleUrl: './admin-frequentation.scss'
 })

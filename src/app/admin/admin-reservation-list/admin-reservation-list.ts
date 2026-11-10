@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { DatePipe, DecimalPipe } from '@angular/common';
 
 import { AdminSeanceService } from '../admin-seance.service';
 import { Reservation } from '../../reservation/reservation.model';
@@ -7,7 +8,7 @@ import { AdminFrequentationService } from '../admin-frequentation.service';
 
 @Component({
   selector: 'app-admin-reservation-list',
-  imports: [],
+  imports: [DatePipe, DecimalPipe, RouterLink],
   templateUrl: './admin-reservation-list.html',
   styleUrl: './admin-reservation-list.scss'
 })

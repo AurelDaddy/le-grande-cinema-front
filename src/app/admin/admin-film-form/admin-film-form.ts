@@ -1,13 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import { AdminFilmService } from '../admin-film.service';
 import { CreateFilmRequest } from '../create-film-request';
 
 @Component({
   selector: 'app-admin-film-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,RouterLink],
   templateUrl: './admin-film-form.html',
   styleUrl: './admin-film-form.scss'
 })

@@ -1,12 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 import { BilletService } from '../billet.service';
 import { Billet } from '../billet.model';
 
 @Component({
   selector: 'app-billet-detail',
-  imports: [],
+  imports: [DatePipe, RouterLink],
   templateUrl: './billet-detail.html',
   styleUrl: './billet-detail.scss'
 })

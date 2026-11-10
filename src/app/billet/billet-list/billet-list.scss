@@ -1,0 +1,15 @@
+
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.billet-entete {
+  background-color: var(--cinema-dark);
+  color: var(--cinema-gold-light);
+  border-bottom: 2px solid var(--cinema-gold);
+}
+
+.btn {
+  min-height: 44px;
+}

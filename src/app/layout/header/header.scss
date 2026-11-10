@@ -1,0 +1,18 @@
+
+.cinema-navbar {
+  background-color: var(--cinema-dark);
+  border-bottom: 2px solid var(--cinema-gold);
+}
+
+.cinema-logo {
+  display: block;
+  width: 250px;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 575.98px) {
+  .cinema-logo {
+    width: 180px;
+  }
+}

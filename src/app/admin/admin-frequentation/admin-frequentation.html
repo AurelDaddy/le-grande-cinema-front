@@ -1,44 +1,137 @@
-<h1>Fréquentation</h1>
 
-<form [formGroup]="frequentationForm" (ngSubmit)="calculerFrequentation()">
+<main class="container py-5">
 
-    <div>
-        <label for="dateDebut">
-            Date de début
-        </label>
+  <div class="row justify-content-center">
 
-        <input id="dateDebut" type="datetime-local" formControlName="dateDebut">
+    <div class="col-12 col-lg-8">
+
+      <h1 class="mb-2">Fréquentation</h1>
+
+      <p class="text-muted mb-4">
+        Consultez le taux de remplissage
+        du cinéma sur une période donnée.
+      </p>
+
+      <section class="card shadow-sm border-0">
+
+        <div class="card-body p-4 p-md-5">
+
+          <form
+            [formGroup]="frequentationForm"
+            (ngSubmit)="calculerFrequentation()"
+          >
+
+            <div class="row g-3">
+
+              <!-- Date de début -->
+              <div class="col-12 col-md-6">
+
+                <label for="dateDebut" class="form-label">
+                  Date de début
+                </label>
+
+                <input
+                  id="dateDebut"
+                  type="datetime-local"
+                  class="form-control"
+                  formControlName="dateDebut"
+                >
+
+              </div>
+
+              <!-- Date de fin -->
+              <div class="col-12 col-md-6">
+
+                <label for="dateFin" class="form-label">
+                  Date de fin
+                </label>
+
+                <input
+                  id="dateFin"
+                  type="datetime-local"
+                  class="form-control"
+                  formControlName="dateFin"
+                >
+
+              </div>
+
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary mt-4"
+              [disabled]="frequentationForm.invalid"
+            >
+              Calculer le taux de remplissage
+            </button>
+
+          </form>
+
+          @if (erreur()) {
+
+            <div
+              class="alert alert-danger mt-4"
+              role="alert"
+            >
+              {{ erreur() }}
+            </div>
+
+          }
+
+          @if (tauxRemplissage() !== null) {
+
+            <div class="frequentation-resultat mt-4 p-4 rounded">
+
+              <h2 class="h5 text-center mb-3">
+                Taux de remplissage
+              </h2>
+
+              <p class="taux-valeur text-center mb-3">
+                {{ tauxRemplissage() | number:'1.0-2' }} %
+              </p>
+
+              <div
+                class="progress"
+                role="progressbar"
+                aria-label="Taux de remplissage"
+                [attr.aria-valuenow]="tauxRemplissage()"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+
+                <div
+                  class="progress-bar"
+                  [style.width.%]="tauxRemplissage()"
+                ></div>
+
+              </div>
+
+              @if (tauxRemplissage() === 0) {
+
+                <p class="text-center text-muted mt-3 mb-0">
+                  Aucune place réservée sur cette période.
+                </p>
+
+              }
+
+            </div>
+
+          }
+
+        </div>
+
+      </section>
+
+      <div class="mt-4">
+
+        <a routerLink="/admin" class="text-decoration-none">
+          Retour à l'administration
+        </a>
+
+      </div>
+
     </div>
 
-    <div>
-        <label for="dateFin">
-            Date de fin
-        </label>
+  </div>
 
-        <input id="dateFin" type="datetime-local" formControlName="dateFin">
-    </div>
-
-    <button type="submit" [disabled]="frequentationForm.invalid">
-        Calculer
-    </button>
-
-</form>
-
-@if (erreur()) {
-<p>{{ erreur() }}</p>
-}
-
-@if (tauxRemplissage() !== null) {
-
-    @if (tauxRemplissage() === 0) {
-        <p>
-            Aucune place réservée sur cette période.
-        </p>
-    } @else {
-        <p>
-            Taux de remplissage sur la période :
-            {{ tauxRemplissage() }} %
-        </p>
-    }
-
-}
+</main>

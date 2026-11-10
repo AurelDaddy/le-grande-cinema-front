@@ -1,62 +1,133 @@
-@if (film(); as filmCourant) {
 
-  <article>
+<main class="container py-5">
 
-    <img
-      [src]="filmCourant.urlAffiche"
-      [alt]="filmCourant.titre"
-    >
+  @if (film(); as filmCourant) {
 
-    <h1>{{ filmCourant.titre }}</h1>
+    <article>
 
-    <p>
-      {{ filmCourant.genre }}
-      - {{ filmCourant.dureeMinute }} min
-      - {{ filmCourant.anneeSortie }}
-    </p>
+      <div class="row g-4 mb-5">
 
-    <p>
-      Réalisé par {{ filmCourant.realisateur }}
-    </p>
+        <!-- Affiche du film -->
+        <div class="col-12 col-md-4">
 
-    <p>
-      {{ filmCourant.synopsis }}
-    </p>
+          <img
+            [src]="filmCourant.urlAffiche"
+            [alt]="'Affiche du film ' + filmCourant.titre"
+            class="img-fluid rounded shadow-sm affiche-film"
+          >
 
-    <section>
+        </div>
 
-        <h2>Séances Disponibles</h2>
+        <!-- Informations du film -->
+        <div class="col-12 col-md-8">
 
-        @if (seances().length ===0) {
+          <h1 class="mb-3">
+            {{ filmCourant.titre }}
+          </h1>
 
-            <p>Aucune séance disponible pour ce film.</p>
+          <p class="text-muted">
+            {{ filmCourant.genre }} |
+            {{ filmCourant.dureeMinute }} min |
+            {{ filmCourant.anneeSortie }}
+          </p>
+
+          <p>
+            <strong>Réalisateur :</strong>
+            {{ filmCourant.realisateur }}
+          </p>
+
+          <h2 class="h4 mt-4">Synopsis</h2>
+
+          <p class="lh-lg">
+            {{ filmCourant.synopsis }}
+          </p>
+
+          <a routerLink="/"
+             class="btn btn-outline-secondary mt-3">
+            Retour aux films
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- Séances disponibles -->
+      <section>
+
+        <h2 class="mb-4">Séances disponibles</h2>
+
+        @if (seances().length === 0) {
+
+          <div class="alert alert-info">
+            Aucune séance disponible pour ce film.
+          </div>
+
         } @else {
+
+          <div class="row g-3">
 
             @for (seance of seances(); track seance.idSeance) {
 
-                <article>
+              <div class="col-12 col-md-6 col-lg-4">
 
-                    <h3>{{seance.dateHeure}}</h3>
+                <div class="card h-100 shadow-sm">
 
-                    <p>Version : {{seance.version}}</p>
+                  <div class="card-body d-flex flex-column">
 
-                    <p>Salle : {{seance.idSalle}}</p>
+                    <h3 class="card-title h5">
+                      {{ seance.dateHeure | date:'dd/MM/yyyy' }}
+                    </h3>
 
-                    <p>Prix : {{seance.prix}} €</p>
+                    <p class="fw-semibold">
+                      {{ seance.dateHeure | date:'HH:mm' }}
+                    </p>
 
-                </article>
-                
-                <a [routerLink]="['/reservation', seance.idSeance]">Réserver</a>
-            } 
-        }  
+                    <p>
+                      <span class="badge text-bg-secondary">
+                        {{ seance.version }}
+                      </span>
+                    </p>
 
+                    <p class="mb-2">
+                      Référence salle : {{ seance.idSalle }}
+                    </p>
 
-    </section>
+                    <p class="mb-3">
+                      Prix : {{ seance.prix }} €
+                    </p>
 
-  </article>
+                    <a
+                      [routerLink]="[
+                        '/reservation',
+                        seance.idSeance
+                      ]"
+                      class="btn btn-primary mt-auto"
+                    >
+                      Réserver
+                    </a>
 
-} @else {
+                  </div>
 
-  <p>Chargement du film...</p>
+                </div>
 
-}
+              </div>
+
+            }
+
+          </div>
+
+        }
+
+      </section>
+
+    </article>
+
+  } @else {
+
+    <p class="text-muted">
+      Chargement du film...
+    </p>
+
+  }
+
+</main>

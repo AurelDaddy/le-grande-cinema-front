@@ -1,73 +1,187 @@
-<h1>Créer une séance</h1>
 
-@if (erreur()) {
-<p>{{ erreur() }}</p>
-}
+<main class="container py-5">
 
-<form [formGroup]="seanceForm" (ngSubmit)="creerSeance()">
+  <div class="row justify-content-center">
 
-    <div>
-        <label for="film">Film</label>
+    <div class="col-12 col-lg-8">
 
-        <select id="film" formControlName="idFilm">
+      <section class="card shadow-sm border-0">
 
-            <option [value]="0">
-                Sélectionner un film
-            </option>
+        <div class="card-body p-4 p-md-5">
 
-            @for (film of films(); track film.idFilm) {
-            <option [value]="film.idFilm">
-                {{ film.titre }}
-            </option>
-            }
+          <h1 class="h2 mb-2">
+            Créer une séance
+          </h1>
 
-        </select>
+          <p class="text-muted mb-4">
+            Programmez une nouvelle projection
+            dans votre cinéma.
+          </p>
+
+          @if (erreur()) {
+
+            <div class="alert alert-danger" role="alert">
+              {{ erreur() }}
+            </div>
+
+          }
+
+          <form
+            [formGroup]="seanceForm"
+            (ngSubmit)="creerSeance()"
+          >
+
+            <div class="row g-3">
+
+              <!-- Film -->
+              <div class="col-12 col-md-6">
+
+                <label for="film" class="form-label">
+                  Film
+                </label>
+
+                <select
+                  id="film"
+                  class="form-select"
+                  formControlName="idFilm"
+                >
+
+                  <option [ngValue]="0">
+                    Sélectionner un film
+                  </option>
+
+                  @for (film of films(); track film.idFilm) {
+
+                    <option [ngValue]="film.idFilm">
+                      {{ film.titre }}
+                    </option>
+
+                  }
+
+                </select>
+
+              </div>
+
+              <!-- Salle -->
+              <div class="col-12 col-md-6">
+
+                <label for="salle" class="form-label">
+                  Salle
+                </label>
+
+                <select
+                  id="salle"
+                  class="form-select"
+                  formControlName="idSalle"
+                >
+
+                  <option [ngValue]="0">
+                    Sélectionner une salle
+                  </option>
+
+                  @for (salle of salles(); track salle.idSalle) {
+
+                    <option [ngValue]="salle.idSalle">
+                      Salle {{ salle.numeroSalle }}
+                    </option>
+
+                  }
+
+                </select>
+
+              </div>
+
+              <!-- Date et heure -->
+              <div class="col-12 col-md-6">
+
+                <label
+                  for="dateHeure"
+                  class="form-label"
+                >
+                  Date et heure
+                </label>
+
+                <input
+                  id="dateHeure"
+                  type="datetime-local"
+                  class="form-control"
+                  formControlName="dateHeure"
+                >
+
+              </div>
+
+              <!-- Version -->
+              <div class="col-12 col-md-6">
+
+                <label for="version" class="form-label">
+                  Version
+                </label>
+
+                <select
+                  id="version"
+                  class="form-select"
+                  formControlName="version"
+                >
+
+                  <option value="">
+                    Sélectionner une version
+                  </option>
+
+                  <option value="VF">VF</option>
+                  <option value="VOSTFR">VOSTFR</option>
+
+                </select>
+
+              </div>
+
+              <!-- Prix -->
+              <div class="col-12">
+
+                <label for="prix" class="form-label">
+                  Prix de la séance (€)
+                </label>
+
+                <input
+                  id="prix"
+                  type="number"
+                  class="form-control"
+                  min="0.01"
+                  step="0.01"
+                  formControlName="prix"
+                >
+
+              </div>
+
+            </div>
+
+            <div class="d-flex flex-column
+                        flex-sm-row gap-3 mt-4">
+
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="seanceForm.invalid"
+              >
+                Créer la séance
+              </button>
+
+              <a
+                routerLink="/admin/seances"
+                class="btn btn-outline-secondary"
+              >
+                Annuler
+              </a>
+
+            </div>
+
+          </form>
+
+        </div>
+
+      </section>
+
     </div>
 
-    <div>
-        <label for="salle">Salle</label>
+  </div>
 
-        <select id="salle" formControlName="idSalle">
-
-            <option [value]="0">
-                Sélectionner une salle
-            </option>
-
-            @for (salle of salles(); track salle.idSalle) {
-            <option [value]="salle.idSalle">
-                Salle {{ salle.numeroSalle }}
-            </option>
-            }
-
-        </select>
-    </div>
-
-    <div>
-        <label for="dateHeure">Date et heure</label>
-
-        <input id="dateHeure" type="datetime-local" formControlName="dateHeure">
-    </div>
-
-    <div>
-        <label for="version">Version</label>
-
-        <select id="version" formControlName="version">
-            <option value="" disabled selected>
-                Sélectionner une version
-            </option>
-            <option value="VF">VF</option>
-            <option value="VOSTFR">VOSTFR</option>
-        </select>
-    </div>
-
-    <div>
-        <label for="prix">Prix</label>
-
-        <input id="prix" type="number" min="0.01" step="0.01" formControlName="prix">
-    </div>
-
-    <button type="submit" [disabled]="seanceForm.invalid">
-        Créer la séance
-    </button>
-
-</form>
+</main>

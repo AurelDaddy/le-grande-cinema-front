@@ -1,0 +1,28 @@
+
+.billet {
+  background-color: var(--cinema-dark);
+  color: var(--cinema-ivory);
+  border: 1px solid var(--cinema-gold);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.billet-entete {
+  color: var(--cinema-gold-light);
+  border-bottom: 2px dashed var(--cinema-gold);
+}
+
+.billet-contenu {
+  background-color: var(--cinema-dark);
+}
+
+.billet-label {
+  display: block;
+  color: var(--cinema-gold-light);
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.separation {
+  border-top: 1px dashed var(--cinema-gold);
+}
