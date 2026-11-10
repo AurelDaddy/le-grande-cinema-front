@@ -1,42 +1,169 @@
-<h1>Réservations de la séance</h1>
 
-@if (erreur()) {
-  <p>{{ erreur() }}</p>
-}
+<main class="container py-5">
 
-@if (reservations().length === 0) {
-  <p>Aucune réservation pour cette séance.</p>
-}
+  <div class="mb-4">
 
-@if (tauxRemplissage() !== null) {
-  <p>Taux de remplissage de la séance: {{ tauxRemplissage() }}%</p>
-}
+    <h1 class="mb-2">
+      Réservations de la séance
+    </h1>
 
-@for (reservation of reservations(); track reservation.idReservation) {
-
-  <article>
-
-    <p>
-      Réservation n° {{ reservation.idReservation }}
+    <p class="text-muted">
+      Consultez les réservations et le taux
+      de remplissage de cette séance.
     </p>
 
-    <p>
-      Date : {{ reservation.dateReservation }}
-    </p>
+  </div>
 
-    <p>
-      Statut : {{ reservation.statut }}
-    </p>
+  <!-- Affichage des erreurs -->
+  @if (erreur()) {
 
-    <p>
-      Utilisateur : {{ reservation.idUtilisateur }}
-    </p>
+    <div class="alert alert-danger" role="alert">
+      {{ erreur() }}
+    </div>
 
-    <p>
-      Séance : {{ reservation.idSeance }}
-    </p>
+  }
 
+  <!-- Taux de remplissage -->
+  @if (tauxRemplissage() !== null) {
 
+    <section class="card shadow-sm border-0 mb-4">
 
-  </article>
-}
+      <div class="card-body p-4">
+
+        <h2 class="h5 mb-3">
+          Taux de remplissage
+        </h2>
+
+        <p class="taux-valeur mb-3">
+          {{ tauxRemplissage() | number:'1.0-2' }} %
+        </p>
+
+        <div
+          class="progress"
+          role="progressbar"
+          aria-label="Taux de remplissage de la séance"
+          [attr.aria-valuenow]="tauxRemplissage()"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+
+          <div
+            class="progress-bar"
+            [style.width.%]="tauxRemplissage()"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  }
+
+  <!-- Liste des réservations -->
+  <section>
+
+    <h2 class="h4 mb-3">
+      Liste des réservations
+    </h2>
+
+    @if (reservations().length === 0 && !erreur()) {
+
+      <div class="alert alert-info">
+        Aucune réservation pour cette séance.
+      </div>
+
+    } @else if (reservations().length > 0) {
+
+      <div class="card shadow-sm border-0">
+
+        <div class="table-responsive">
+
+          <table class="table table-hover align-middle mb-0">
+
+            <thead class="table-light">
+
+              <tr>
+                <th scope="col">Réservation</th>
+                <th scope="col">Date</th>
+                <th scope="col">Utilisateur</th>
+                <th scope="col">Séance</th>
+                <th scope="col">Statut</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              @for (
+                reservation of reservations();
+                track reservation.idReservation
+              ) {
+
+                <tr>
+
+                  <td>
+                    #{{ reservation.idReservation }}
+                  </td>
+
+                  <td class="text-nowrap">
+                    {{ reservation.dateReservation
+                      | date:'dd/MM/yyyy HH:mm' }}
+                  </td>
+
+                  <td>
+                    #{{ reservation.idUtilisateur }}
+                  </td>
+
+                  <td>
+                    #{{ reservation.idSeance }}
+                  </td>
+
+                  <td>
+
+                    <span
+                      class="badge"
+                      [class.text-bg-success]="
+                        reservation.statut === 'CONFIRMEE'
+                      "
+                      [class.text-bg-warning]="
+                        reservation.statut === 'EN_ATTENTE'
+                      "
+                      [class.text-bg-secondary]="
+                        reservation.statut !== 'CONFIRMEE' &&
+                        reservation.statut !== 'EN_ATTENTE'
+                      "
+                    >
+                      {{ reservation.statut }}
+                    </span>
+
+                  </td>
+
+                </tr>
+
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    }
+
+  </section>
+
+  <div class="mt-4">
+
+    <a
+      routerLink="/admin/seances"
+      class="text-decoration-none"
+    >
+      Retour aux séances
+    </a>
+
+  </div>
+
+</main>

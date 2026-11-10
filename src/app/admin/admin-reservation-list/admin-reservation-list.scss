@@ -1,0 +1,24 @@
+
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.taux-valeur {
+  color: var(--cinema-gold);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.progress {
+  height: 12px;
+}
+
+.progress-bar {
+  background-color: var(--cinema-gold);
+}
+
+.table th {
+  white-space: nowrap;
+  font-weight: 600;
+}

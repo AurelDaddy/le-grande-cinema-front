@@ -1,50 +1,172 @@
-<h1>Gestion des séances</h1>
 
-<a routerLink="/admin/seances/new">
-    Ajouter une séance
-</a>
+<main class="container py-5">
 
-@if (erreur()) {
-<p>{{ erreur() }}</p>
-}
+  <div
+    class="d-flex flex-column flex-md-row
+           justify-content-between
+           align-items-md-center gap-3 mb-4"
+  >
 
-@if (seances().length === 0) {
-<p>Aucune séance.</p>
-}
+    <div>
+      <h1 class="mb-2">Gestion des séances</h1>
 
-@for (seance of seances(); track seance.idSeance) {
-<article>
-    <p>
-        Séance n° {{ seance.idSeance }}
-    </p>
+      <p class="text-muted mb-0">
+        Consultez et gérez les séances programmées.
+      </p>
+    </div>
 
-    <p>
-        Date : {{ seance.dateHeure }}
-    </p>
-
-    <p>
-        Version : {{ seance.version }}
-    </p>
-
-    <p>
-        Prix : {{ seance.prix }} €
-    </p>
-
-    <p>
-        Film : {{ seance.idFilm }}
-    </p>
-
-    <p>
-        Salle : {{ seance.idSalle }}
-    </p>
-
-    <button type="button" (click)="deleteSeance(seance.idSeance)">
-        Supprimer
-    </button>
-
-    <a [routerLink]="['/admin/seances', seance.idSeance, 'reservations']">
-        Voir les réservations
+    <a
+      routerLink="/admin/seances/new"
+      class="btn btn-primary"
+    >
+      Ajouter une séance
     </a>
 
-</article>
-}
+  </div>
+
+  <!-- Gestion du chargement et des erreurs -->
+
+  @if (chargement()) {
+
+    <div class="text-center py-4">
+
+      <div
+        class="spinner-border text-secondary"
+        role="status"
+      >
+        <span class="visually-hidden">
+          Chargement des séances...
+        </span>
+      </div>
+
+    </div>
+
+  } @else if (erreur()) {
+
+    <div class="alert alert-danger" role="alert">
+      {{ erreur() }}
+    </div>
+
+  } @else if (seances().length === 0) {
+
+    <div class="alert alert-info">
+      Aucune séance programmée.
+    </div>
+
+  } @else {
+
+    <!-- Tableau des séances -->
+
+    <div class="card shadow-sm border-0">
+
+      <div class="card-body p-0">
+
+        <div class="table-responsive">
+
+          <table class="table table-hover align-middle mb-0">
+
+            <thead class="table-light">
+
+              <tr>
+                <th scope="col">Séance</th>
+                <th scope="col">Date</th>
+                <th scope="col">Heure</th>
+                <th scope="col">Version</th>
+                <th scope="col">Film</th>
+                <th scope="col">Salle</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Actions</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              @for (seance of seances(); track seance.idSeance) {
+
+                <tr>
+
+                  <td>
+                    #{{ seance.idSeance }}
+                  </td>
+
+                  <td class="text-nowrap">
+                    {{ seance.dateHeure | date:'dd/MM/yyyy' }}
+                  </td>
+
+                  <td class="text-nowrap">
+                    {{ seance.dateHeure | date:'HH:mm' }}
+                  </td>
+
+                  <td>
+                    <span class="badge text-bg-secondary">
+                      {{ seance.version }}
+                    </span>
+                  </td>
+
+                  <!-- Affichage du titre plutôt que de l'idFilm -->
+                  <td>
+                    {{ titreFilm(seance.idFilm) }}
+                  </td>
+
+                  <!-- Affichage du véritable numéro de salle -->
+                  <td>
+                    {{ numeroSalle(seance.idSalle) }}
+                  </td>
+
+                  <td class="text-nowrap">
+                    {{ seance.prix }} €
+                  </td>
+
+                  <td>
+
+                    <div class="d-flex gap-2">
+
+                      <a
+                        [routerLink]="[
+                          '/admin/seances',
+                          seance.idSeance,
+                          'reservations'
+                        ]"
+                        class="btn btn-outline-secondary btn-sm"
+                      >
+                        Réservations
+                      </a>
+
+                      <button
+                        type="button"
+                        class="btn btn-outline-danger btn-sm"
+                        (click)="deleteSeance(seance.idSeance)"
+                      >
+                        Supprimer
+                      </button>
+
+                    </div>
+
+                  </td>
+
+                </tr>
+
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  }
+
+  <div class="mt-4">
+
+    <a routerLink="/admin" class="text-decoration-none">
+      Retour à l'administration
+    </a>
+
+  </div>
+
+</main>

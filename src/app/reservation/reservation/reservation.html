@@ -1,69 +1,143 @@
-<h1>Réservation</h1>
 
-<p>
-  Places disponibles :
-  {{ nombrePlacesDisponibles() }}
-</p>
+<main class="container py-5">
 
-@if (nombrePlacesDisponibles() > 0) {
+  <div class="row justify-content-center">
 
-  <label for="nombrePlaces">
-    Nombre de places
-  </label>
+    <div class="col-12 col-md-8 col-lg-6">
 
-  <input
-    id="nombrePlaces"
-    type="number"
-    min="1"
-    [max]="nombrePlacesDisponibles()"
-    [value]="nombrePlaces()"
-    (input)="changerNombrePlaces($event)"
-  >
+      <section class="card shadow-sm border-0">
 
-  <button
-    type="button"
-    (click)="reserver()"
-  >
-    Réserver
-  </button>
+        <div class="card-body p-4 p-md-5">
 
-} @else {
+          <h1 class="h2 mb-3">
+            Réserver vos places
+          </h1>
 
-  <p>
-    Aucune place disponible.
-  </p>
+          <p class="text-muted mb-4">
+            Sélectionnez le nombre de places
+            souhaitées pour votre séance.
+          </p>
 
-}
+          <!-- Disponibilités -->
+          <div
+            class="d-flex justify-content-between
+                   align-items-center mb-4"
+          >
+            <span class="fw-semibold">
+              Places disponibles
+            </span>
 
-@if (reservationCreee(); as reservation) {
+            <span class="badge text-bg-success">
+              {{ nombrePlacesDisponibles() }}
+            </span>
+          </div>
 
-  <p>
-    Réservation créée avec succès.
-  </p>
+          @if (reservationCreee(); as reservation) {
 
-  <p>
-    Numéro de réservation :
-    {{ reservation.idReservation }}
-  </p>
+            <!-- Réservation créée -->
+            <div class="alert alert-success" role="status">
+              Votre réservation a été créée avec succès !
+            </div>
 
-  <p>
-    Statut :
-    {{ reservation.statut }}
-  </p>
+            <div class="reservation-recap p-3 rounded mb-4">
 
-  <a
-  [routerLink]="[
-    '/paiement',
-    reservation.idReservation
-  ]"
->
-  Procéder au paiement
-</a>
-}
+              <p>
+                <strong>Numéro de réservation :</strong>
+                {{ reservation.idReservation }}
+              </p>
 
-@if (erreur()) {
+              <p class="mb-0">
+                <strong>Statut :</strong>
+                {{ reservation.statut }}
+              </p>
 
-  <p>
-    {{ erreur() }}
-  </p>
-}
+            </div>
+
+            <a
+              [routerLink]="[
+                '/paiement',
+                reservation.idReservation
+              ]"
+              class="btn btn-primary w-100"
+            >
+              Procéder au paiement
+            </a>
+
+          } @else if (nombrePlacesDisponibles() > 0) {
+
+            <!-- Choix du nombre de places -->
+            <div class="mb-4">
+
+              <label
+                for="nombrePlaces"
+                class="form-label fw-semibold"
+              >
+                Nombre de places
+              </label>
+
+              <input
+                id="nombrePlaces"
+                type="number"
+                class="form-control"
+                min="1"
+                [max]="nombrePlacesDisponibles()"
+                [value]="nombrePlaces()"
+                (input)="changerNombrePlaces($event)"
+              >
+
+              <div class="form-text">
+                Maximum :
+                {{ nombrePlacesDisponibles() }}
+                places
+              </div>
+
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-primary w-100"
+              [disabled]="
+                nombrePlaces() < 1 ||
+                nombrePlaces() > nombrePlacesDisponibles()
+              "
+              (click)="reserver()"
+            >
+              Confirmer ma réservation
+            </button>
+
+          } @else {
+
+            <div class="alert alert-warning">
+              Aucune place disponible pour cette séance.
+            </div>
+
+          }
+
+          @if (erreur()) {
+
+            <div
+              class="alert alert-danger mt-4"
+              role="alert"
+            >
+              {{ erreur() }}
+            </div>
+
+          }
+
+          <div class="text-center mt-4">
+
+            <a routerLink="/" class="text-decoration-none">
+              Retour aux films
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+</main>

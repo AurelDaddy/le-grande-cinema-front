@@ -1,75 +1,192 @@
-<h1>Ajouter un film</h1>
 
-@if (erreur()) {
-  <p>{{ erreur() }}</p>
-}
+<main class="container py-5">
 
-<form
-  [formGroup]="filmForm"
-  (ngSubmit)="creerFilm()">
+  <div class="row justify-content-center">
 
-  <div>
-    <label for="titre">Titre</label>
-    <input
-      id="titre"
-      type="text"
-      formControlName="titre">
+    <div class="col-12 col-lg-8">
+
+      <section class="card shadow-sm border-0">
+
+        <div class="card-body p-4 p-md-5">
+
+          <h1 class="h2 mb-2">
+            Ajouter un film
+          </h1>
+
+          <p class="text-muted mb-4">
+            Ajoutez un nouveau film au catalogue du cinéma.
+          </p>
+
+          @if (erreur()) {
+
+            <div class="alert alert-danger" role="alert">
+              {{ erreur() }}
+            </div>
+
+          }
+
+          <form
+            [formGroup]="filmForm"
+            (ngSubmit)="creerFilm()"
+          >
+
+            <div class="row g-3">
+
+              <!-- Titre -->
+              <div class="col-12">
+
+                <label for="titre" class="form-label">
+                  Titre du film
+                </label>
+
+                <input
+                  id="titre"
+                  type="text"
+                  class="form-control"
+                  formControlName="titre"
+                >
+
+              </div>
+
+              <!-- Durée -->
+              <div class="col-12 col-md-6">
+
+                <label for="dureeMinute" class="form-label">
+                  Durée (minutes)
+                </label>
+
+                <input
+                  id="dureeMinute"
+                  type="number"
+                  min="1"
+                  class="form-control"
+                  formControlName="dureeMinute"
+                >
+
+              </div>
+
+              <!-- Année de sortie -->
+              <div class="col-12 col-md-6">
+
+                <label for="anneeSortie" class="form-label">
+                  Année de sortie
+                </label>
+
+                <input
+                  id="anneeSortie"
+                  type="number"
+                  min="1888"
+                  class="form-control"
+                  formControlName="anneeSortie"
+                >
+
+              </div>
+
+              <!-- Genre -->
+              <div class="col-12 col-md-6">
+
+                <label for="genre" class="form-label">
+                  Genre
+                </label>
+
+                <input
+                  id="genre"
+                  type="text"
+                  class="form-control"
+                  formControlName="genre"
+                >
+
+              </div>
+
+              <!-- Réalisateur -->
+              <div class="col-12 col-md-6">
+
+                <label for="realisateur" class="form-label">
+                  Réalisateur
+                </label>
+
+                <input
+                  id="realisateur"
+                  type="text"
+                  class="form-control"
+                  formControlName="realisateur"
+                >
+
+              </div>
+
+              <!-- Synopsis -->
+              <div class="col-12">
+
+                <label for="synopsis" class="form-label">
+                  Synopsis
+                </label>
+
+                <textarea
+                  id="synopsis"
+                  class="form-control"
+                  rows="5"
+                  formControlName="synopsis"
+                ></textarea>
+
+              </div>
+
+              <!-- Affiche -->
+              <div class="col-12">
+
+                <label for="urlAffiche" class="form-label">
+                  URL de l'affiche
+                </label>
+
+                <input
+                  id="urlAffiche"
+                  type="url"
+                  class="form-control"
+                  placeholder="https://www.themoviedb.org/affiche.jpg"
+                  formControlName="urlAffiche"
+                >
+
+                <div class="form-text">
+                  Renseignez l'adresse complète
+                  de l'image de l'affiche. 
+                  Faites un clic droit sur l'image
+                  et sélectionnez "Copier l'adresse de l'image"
+                  pour obtenir l'URL.
+                </div>
+
+              </div>
+
+            </div>
+
+            <div
+              class="d-flex flex-column flex-sm-row
+                     gap-3 mt-4"
+            >
+
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="filmForm.invalid"
+              >
+                Ajouter le film
+              </button>
+
+              <a
+                routerLink="/admin"
+                class="btn btn-outline-secondary"
+              >
+                Annuler
+              </a>
+
+            </div>
+
+          </form>
+
+        </div>
+
+      </section>
+
+    </div>
+
   </div>
 
-  <div>
-    <label for="dureeMinute">Durée en minutes</label>
-    <input
-      id="dureeMinute"
-      type="number"
-      min="1"
-      formControlName="dureeMinute">
-  </div>
-
-  <div>
-    <label for="anneeSortie">Année de sortie</label>
-    <input
-      id="anneeSortie"
-      type="number"
-      min="1888"
-      formControlName="anneeSortie">
-  </div>
-
-  <div>
-    <label for="genre">Genre</label>
-    <input
-      id="genre"
-      type="text"
-      formControlName="genre">
-  </div>
-
-  <div>
-    <label for="realisateur">Réalisateur</label>
-    <input
-      id="realisateur"
-      type="text"
-      formControlName="realisateur">
-  </div>
-
-  <div>
-    <label for="synopsis">Synopsis</label>
-    <textarea
-      id="synopsis"
-      formControlName="synopsis">
-    </textarea>
-  </div>
-
-  <div>
-    <label for="urlAffiche">URL de l'affiche</label>
-    <input
-      id="urlAffiche"
-      type="url"
-      formControlName="urlAffiche">
-  </div>
-
-  <button
-    type="submit"
-    [disabled]="filmForm.invalid">
-    Ajouter le film
-  </button>
-
-</form>
+</main>

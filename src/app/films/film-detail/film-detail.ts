@@ -5,10 +5,11 @@ import { FilmService } from '../film.service';
 import { Seance } from '../seance';
 import { SeanceService } from '../seance.service';
 import { RouterLink } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-film-detail',
-  imports: [RouterLink],
+  imports: [RouterLink, DatePipe],
   templateUrl: './film-detail.html',
   styleUrl: './film-detail.scss'
 })

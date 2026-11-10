@@ -5,14 +5,15 @@ import {
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 
 import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss'
@@ -40,7 +41,8 @@ export class Login {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   connecter(): void {
@@ -58,7 +60,18 @@ export class Login {
 
         this.messageErreur.set(null);
 
-        this.router.navigate(['/']);
+        //récupère l'url voulu au moment de la connexion
+        const returnUrl =
+          this.route.snapshot.queryParamMap.get('returnUrl');
+
+        //si cet url est valide (commence par / et pas par //)
+        const destination =
+          returnUrl?.startsWith('/') && !returnUrl.startsWith('//')
+          //alors detination prends l'url voulu, sinon page d'accueil
+            ? returnUrl
+            : '/';
+        
+        this.router.navigateByUrl(destination);
       },
 
       error: (error) => {

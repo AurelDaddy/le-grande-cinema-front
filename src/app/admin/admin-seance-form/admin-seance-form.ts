@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import { Film } from '../../films/films';
 import { Salle } from '../salle';
@@ -13,7 +13,7 @@ import { CreateSeanceRequest } from '../create-seance-request';
 
 @Component({
   selector: 'app-admin-seance-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './admin-seance-form.html',
   styleUrl: './admin-seance-form.scss'
 })
