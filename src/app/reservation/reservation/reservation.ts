@@ -1,6 +1,6 @@
+
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-
 
 import { SeanceService } from '../../films/seance.service';
 import { ReservationService } from '../reservation.service';
@@ -21,6 +21,9 @@ export class Reservation {
   protected readonly nombrePlacesDisponibles = signal<number>(0);
   protected readonly nombrePlaces = signal<number>(1);
 
+  // Indique si les places disponibles sont en cours de chargement
+  protected readonly chargementDisponibilites = signal(true);
+
   protected readonly reservationCreee =
     signal<ReservationModel | null>(null);
 
@@ -37,11 +40,13 @@ export class Reservation {
       .subscribe({
         next: (nombre) => {
           this.nombrePlacesDisponibles.set(nombre);
+          this.chargementDisponibilites.set(false);
         },
         error: () => {
           this.erreur.set(
             'Impossible de récupérer les places disponibles.'
           );
+          this.chargementDisponibilites.set(false);
         }
       });
   }

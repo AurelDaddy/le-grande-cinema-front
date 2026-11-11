@@ -27,9 +27,20 @@
               Places disponibles
             </span>
 
-            <span class="badge text-bg-success">
-              {{ nombrePlacesDisponibles() }}
-            </span>
+            @if (chargementDisponibilites()) {
+
+              <span class="badge text-bg-secondary">
+                ...
+              </span>
+
+            } @else if (!erreur()) {
+
+              <span class="badge text-bg-success">
+                {{ nombrePlacesDisponibles() }}
+              </span>
+
+            }
+
           </div>
 
           @if (reservationCreee(); as reservation) {
@@ -62,6 +73,27 @@
             >
               Procéder au paiement
             </a>
+
+          } @else if (chargementDisponibilites()) {
+
+            <!-- Chargement des disponibilités -->
+            <div class="text-center py-4" role="status">
+
+              <div class="spinner-border text-secondary">
+                <span class="visually-hidden">
+                  Chargement des disponibilités...
+                </span>
+              </div>
+
+              <p class="text-muted mt-3">
+                Vérification des places disponibles...
+              </p>
+
+            </div>
+
+          } @else if (erreur()) {
+
+            <!-- Le message d'erreur est affiché plus bas -->
 
           } @else if (nombrePlacesDisponibles() > 0) {
 
